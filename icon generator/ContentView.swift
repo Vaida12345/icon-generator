@@ -195,7 +195,7 @@ struct GridItemView: View {
     @Binding var finderItems: [FinderItem]
     
     @State var isShowingHint: Bool = false
-    @State var image: NSImage = NSImage(systemSymbolName: "clock", accessibilityDescription: "Loading...")!
+    @State var image: NSImage = NSImage(named: "placeholder")!
     @State var isShowingAlert: Bool = false
     
     let item: FinderItem
@@ -210,7 +210,7 @@ struct GridItemView: View {
                 .aspectRatio(contentMode: .fit)
                 .padding([.top, .leading, .trailing])
                 .popover(isPresented: $isShowingHint) {
-                    Text(image != NSImage(systemSymbolName: "clock", accessibilityDescription: "Loading...")! ?
+                    Text(image != NSImage(named: "placeholder")! ?
                         """
                         name: \(item.fileName ?? "???")
                         path: \(item.path)
@@ -262,7 +262,7 @@ struct GridItemView: View {
         }
         .onAppear {
             DispatchQueue(label: "background").async {
-                image = item.image ?? NSImage(systemSymbolName: "clock", accessibilityDescription: "Loading...")!
+                image = item.image ?? NSImage(named: "placeholder")!
                 if image.cgImage(forProposedRect: nil, context: nil, hints: nil)!.width != image.cgImage(forProposedRect: nil, context: nil, hints: nil)!.height {
                     isShowingAlert = true
                 }
