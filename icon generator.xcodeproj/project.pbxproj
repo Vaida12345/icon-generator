@@ -10,66 +10,34 @@
 		B458F32C27635C9E001EBF25 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B458F32B27635C9E001EBF25 /* README.md */; };
 		B458F32E27635CB6001EBF25 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B458F32D27635CB6001EBF25 /* LICENSE */; };
 		B45F92D927631DE3004F048F /* Mac.json in Resources */ = {isa = PBXBuildFile; fileRef = B45F92D827631DE3004F048F /* Mac.json */; };
-		B45F92DB27631EA4004F048F /* iPhone.json in Resources */ = {isa = PBXBuildFile; fileRef = B45F92DA27631EA4004F048F /* iPhone.json */; };
-		B470E3552762FE0900BBE6CA /* icon_generatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3542762FE0900BBE6CA /* icon_generatorApp.swift */; };
+		B470E3552762FE0900BBE6CA /* iconGeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3542762FE0900BBE6CA /* iconGeneratorApp.swift */; };
 		B470E3572762FE0900BBE6CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3562762FE0900BBE6CA /* ContentView.swift */; };
 		B470E3592762FE0900BBE6CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B470E3582762FE0900BBE6CA /* Assets.xcassets */; };
 		B470E35C2762FE0900BBE6CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B470E35B2762FE0900BBE6CA /* Preview Assets.xcassets */; };
-		B470E37B2762FE6E00BBE6CA /* Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3652762FE6E00BBE6CA /* Fraction.swift */; };
-		B470E37C2762FE6E00BBE6CA /* Int10.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3662762FE6E00BBE6CA /* Int10.swift */; };
-		B470E37D2762FE6E00BBE6CA /* Complex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3672762FE6E00BBE6CA /* Complex.swift */; };
-		B470E37E2762FE6E00BBE6CA /* PreciseFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3682762FE6E00BBE6CA /* PreciseFloat.swift */; };
-		B470E37F2762FE6E00BBE6CA /* Arithmetical.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3692762FE6E00BBE6CA /* Arithmetical.swift */; };
-		B470E3802762FE6E00BBE6CA /* PreciseInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E36A2762FE6E00BBE6CA /* PreciseInt.swift */; };
-		B470E3812762FE6E00BBE6CA /* CommentCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E36C2762FE6E00BBE6CA /* CommentCreator.swift */; };
-		B470E3822762FE6E00BBE6CA /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E36D2762FE6E00BBE6CA /* Table.swift */; };
-		B470E3832762FE6E00BBE6CA /* Bechmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E36E2762FE6E00BBE6CA /* Bechmark.swift */; };
-		B470E3842762FE6E00BBE6CA /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E36F2762FE6E00BBE6CA /* Point.swift */; };
-		B470E3852762FE6E00BBE6CA /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3702762FE6E00BBE6CA /* Canvas.swift */; };
-		B470E3862762FE6E00BBE6CA /* MachineLearning.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3712762FE6E00BBE6CA /* MachineLearning.swift */; };
-		B470E3872762FE6E00BBE6CA /* FinderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3722762FE6E00BBE6CA /* FinderItem.swift */; };
-		B470E3882762FE6E00BBE6CA /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3732762FE6E00BBE6CA /* Support.swift */; };
-		B470E3892762FE6E00BBE6CA /* LinearTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3752762FE6E00BBE6CA /* LinearTransformation.swift */; };
-		B470E38A2762FE6E00BBE6CA /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3762762FE6E00BBE6CA /* Expression.swift */; };
-		B470E38B2762FE6E00BBE6CA /* Polynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3772762FE6E00BBE6CA /* Polynomial.swift */; };
-		B470E38C2762FE6E00BBE6CA /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3782762FE6E00BBE6CA /* Matrix.swift */; };
-		B470E38D2762FE6E00BBE6CA /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3792762FE6E00BBE6CA /* Plane.swift */; };
-		B470E38E2762FE6E00BBE6CA /* Algebra.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E37A2762FE6E00BBE6CA /* Algebra.swift */; };
 		B483A9D527633FBA007381F6 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = B483A9D427633FBA007381F6 /* icon.icns */; };
+		B4C0A0DC284E13500010257B /* Support in Frameworks */ = {isa = PBXBuildFile; productRef = B4C0A0DB284E13500010257B /* Support */; };
+		B4C0A0DF284E13AC0010257B /* GridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0A0DE284E13AC0010257B /* GridItemView.swift */; };
+		B4C0A0E1284E13C90010257B /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0A0E0284E13C90010257B /* ProcessView.swift */; };
+		B4C0A0E3284E13DA0010257B /* CustomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0A0E2284E13DA0010257B /* CustomImage.swift */; };
+		B4F610A5284E20250037A053 /* Full.json in Resources */ = {isa = PBXBuildFile; fileRef = B4F610A4284E20250037A053 /* Full.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B458F32B27635C9E001EBF25 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B458F32D27635CB6001EBF25 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B45F92D827631DE3004F048F /* Mac.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Mac.json; sourceTree = "<group>"; };
-		B45F92DA27631EA4004F048F /* iPhone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = iPhone.json; sourceTree = "<group>"; };
-		B470E3512762FE0900BBE6CA /* icon generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "icon generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B470E3542762FE0900BBE6CA /* icon_generatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = icon_generatorApp.swift; sourceTree = "<group>"; };
+		B470E3512762FE0900BBE6CA /* Icon Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Icon Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B470E3542762FE0900BBE6CA /* iconGeneratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iconGeneratorApp.swift; sourceTree = "<group>"; };
 		B470E3562762FE0900BBE6CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B470E3582762FE0900BBE6CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B470E35B2762FE0900BBE6CA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B470E35D2762FE0900BBE6CA /* icon_generator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = icon_generator.entitlements; sourceTree = "<group>"; };
-		B470E3652762FE6E00BBE6CA /* Fraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fraction.swift; sourceTree = "<group>"; };
-		B470E3662762FE6E00BBE6CA /* Int10.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Int10.swift; sourceTree = "<group>"; };
-		B470E3672762FE6E00BBE6CA /* Complex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Complex.swift; sourceTree = "<group>"; };
-		B470E3682762FE6E00BBE6CA /* PreciseFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreciseFloat.swift; sourceTree = "<group>"; };
-		B470E3692762FE6E00BBE6CA /* Arithmetical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arithmetical.swift; sourceTree = "<group>"; };
-		B470E36A2762FE6E00BBE6CA /* PreciseInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreciseInt.swift; sourceTree = "<group>"; };
-		B470E36C2762FE6E00BBE6CA /* CommentCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCreator.swift; sourceTree = "<group>"; };
-		B470E36D2762FE6E00BBE6CA /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
-		B470E36E2762FE6E00BBE6CA /* Bechmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bechmark.swift; sourceTree = "<group>"; };
-		B470E36F2762FE6E00BBE6CA /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
-		B470E3702762FE6E00BBE6CA /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
-		B470E3712762FE6E00BBE6CA /* MachineLearning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachineLearning.swift; sourceTree = "<group>"; };
-		B470E3722762FE6E00BBE6CA /* FinderItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinderItem.swift; sourceTree = "<group>"; };
-		B470E3732762FE6E00BBE6CA /* Support.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
-		B470E3752762FE6E00BBE6CA /* LinearTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearTransformation.swift; sourceTree = "<group>"; };
-		B470E3762762FE6E00BBE6CA /* Expression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
-		B470E3772762FE6E00BBE6CA /* Polynomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polynomial.swift; sourceTree = "<group>"; };
-		B470E3782762FE6E00BBE6CA /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
-		B470E3792762FE6E00BBE6CA /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
-		B470E37A2762FE6E00BBE6CA /* Algebra.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Algebra.swift; sourceTree = "<group>"; };
 		B483A9D427633FBA007381F6 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		B4C0A0DA284E134D0010257B /* DataBase */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DataBase; path = ../../Packages/DataBase; sourceTree = "<group>"; };
+		B4C0A0DE284E13AC0010257B /* GridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridItemView.swift; sourceTree = "<group>"; };
+		B4C0A0E0284E13C90010257B /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
+		B4C0A0E2284E13DA0010257B /* CustomImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImage.swift; sourceTree = "<group>"; };
+		B4F610A4284E20250037A053 /* Full.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Full.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4C0A0DC284E13500010257B /* Support in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,13 +67,14 @@
 				B470E3532762FE0900BBE6CA /* icon generator */,
 				B458F32F27635CBB001EBF25 /* Assets */,
 				B470E3522762FE0900BBE6CA /* Products */,
+				B4C0A0D9284E134D0010257B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		B470E3522762FE0900BBE6CA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B470E3512762FE0900BBE6CA /* icon generator.app */,
+				B470E3512762FE0900BBE6CA /* Icon Generator.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,9 +82,8 @@
 		B470E3532762FE0900BBE6CA /* icon generator */ = {
 			isa = PBXGroup;
 			children = (
-				B470E3542762FE0900BBE6CA /* icon_generatorApp.swift */,
-				B470E3562762FE0900BBE6CA /* ContentView.swift */,
-				B470E3632762FE6E00BBE6CA /* Support */,
+				B470E3542762FE0900BBE6CA /* iconGeneratorApp.swift */,
+				B4C0A0DD284E13830010257B /* Views */,
 				B4C24CF5276325C20034FA51 /* Assets */,
 				B470E35A2762FE0900BBE6CA /* Preview Content */,
 			);
@@ -129,55 +98,23 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		B470E3632762FE6E00BBE6CA /* Support */ = {
+		B4C0A0D9284E134D0010257B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B470E3642762FE6E00BBE6CA /* Numerics */,
-				B470E36B2762FE6E00BBE6CA /* Support */,
-				B470E3732762FE6E00BBE6CA /* Support.swift */,
-				B470E3742762FE6E00BBE6CA /* Algebra */,
+				B4C0A0DA284E134D0010257B /* DataBase */,
 			);
-			path = Support;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B470E3642762FE6E00BBE6CA /* Numerics */ = {
+		B4C0A0DD284E13830010257B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B470E3652762FE6E00BBE6CA /* Fraction.swift */,
-				B470E3662762FE6E00BBE6CA /* Int10.swift */,
-				B470E3672762FE6E00BBE6CA /* Complex.swift */,
-				B470E3682762FE6E00BBE6CA /* PreciseFloat.swift */,
-				B470E3692762FE6E00BBE6CA /* Arithmetical.swift */,
-				B470E36A2762FE6E00BBE6CA /* PreciseInt.swift */,
+				B470E3562762FE0900BBE6CA /* ContentView.swift */,
+				B4C0A0DE284E13AC0010257B /* GridItemView.swift */,
+				B4C0A0E0284E13C90010257B /* ProcessView.swift */,
+				B4C0A0E2284E13DA0010257B /* CustomImage.swift */,
 			);
-			path = Numerics;
-			sourceTree = "<group>";
-		};
-		B470E36B2762FE6E00BBE6CA /* Support */ = {
-			isa = PBXGroup;
-			children = (
-				B470E36C2762FE6E00BBE6CA /* CommentCreator.swift */,
-				B470E36D2762FE6E00BBE6CA /* Table.swift */,
-				B470E36E2762FE6E00BBE6CA /* Bechmark.swift */,
-				B470E36F2762FE6E00BBE6CA /* Point.swift */,
-				B470E3702762FE6E00BBE6CA /* Canvas.swift */,
-				B470E3712762FE6E00BBE6CA /* MachineLearning.swift */,
-				B470E3722762FE6E00BBE6CA /* FinderItem.swift */,
-			);
-			path = Support;
-			sourceTree = "<group>";
-		};
-		B470E3742762FE6E00BBE6CA /* Algebra */ = {
-			isa = PBXGroup;
-			children = (
-				B470E3752762FE6E00BBE6CA /* LinearTransformation.swift */,
-				B470E3762762FE6E00BBE6CA /* Expression.swift */,
-				B470E3772762FE6E00BBE6CA /* Polynomial.swift */,
-				B470E3782762FE6E00BBE6CA /* Matrix.swift */,
-				B470E3792762FE6E00BBE6CA /* Plane.swift */,
-				B470E37A2762FE6E00BBE6CA /* Algebra.swift */,
-			);
-			path = Algebra;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B4C24CF5276325C20034FA51 /* Assets */ = {
@@ -185,7 +122,7 @@
 			children = (
 				B483A9D427633FBA007381F6 /* icon.icns */,
 				B45F92D827631DE3004F048F /* Mac.json */,
-				B45F92DA27631EA4004F048F /* iPhone.json */,
+				B4F610A4284E20250037A053 /* Full.json */,
 				B470E3582762FE0900BBE6CA /* Assets.xcassets */,
 				B470E35D2762FE0900BBE6CA /* icon_generator.entitlements */,
 			);
@@ -195,9 +132,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B470E3502762FE0900BBE6CA /* icon generator */ = {
+		B470E3502762FE0900BBE6CA /* Icon Generator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B470E3602762FE0900BBE6CA /* Build configuration list for PBXNativeTarget "icon generator" */;
+			buildConfigurationList = B470E3602762FE0900BBE6CA /* Build configuration list for PBXNativeTarget "Icon Generator" */;
 			buildPhases = (
 				B470E34D2762FE0900BBE6CA /* Sources */,
 				B470E34E2762FE0900BBE6CA /* Frameworks */,
@@ -207,9 +144,12 @@
 			);
 			dependencies = (
 			);
-			name = "icon generator";
+			name = "Icon Generator";
+			packageProductDependencies = (
+				B4C0A0DB284E13500010257B /* Support */,
+			);
 			productName = "icon generator";
-			productReference = B470E3512762FE0900BBE6CA /* icon generator.app */;
+			productReference = B470E3512762FE0900BBE6CA /* Icon Generator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -220,14 +160,14 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					B470E3502762FE0900BBE6CA = {
 						CreatedOnToolsVersion = 13.1;
 					};
 				};
 			};
-			buildConfigurationList = B470E34C2762FE0900BBE6CA /* Build configuration list for PBXProject "icon generator" */;
+			buildConfigurationList = B470E34C2762FE0900BBE6CA /* Build configuration list for PBXProject "Icon Generator" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -240,7 +180,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B470E3502762FE0900BBE6CA /* icon generator */,
+				B470E3502762FE0900BBE6CA /* Icon Generator */,
 			);
 		};
 /* End PBXProject section */
@@ -252,10 +192,10 @@
 			files = (
 				B458F32C27635C9E001EBF25 /* README.md in Resources */,
 				B483A9D527633FBA007381F6 /* icon.icns in Resources */,
+				B4F610A5284E20250037A053 /* Full.json in Resources */,
 				B45F92D927631DE3004F048F /* Mac.json in Resources */,
 				B458F32E27635CB6001EBF25 /* LICENSE in Resources */,
 				B470E35C2762FE0900BBE6CA /* Preview Assets.xcassets in Resources */,
-				B45F92DB27631EA4004F048F /* iPhone.json in Resources */,
 				B470E3592762FE0900BBE6CA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,28 +207,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B470E38B2762FE6E00BBE6CA /* Polynomial.swift in Sources */,
-				B470E3872762FE6E00BBE6CA /* FinderItem.swift in Sources */,
-				B470E37E2762FE6E00BBE6CA /* PreciseFloat.swift in Sources */,
-				B470E3852762FE6E00BBE6CA /* Canvas.swift in Sources */,
-				B470E3802762FE6E00BBE6CA /* PreciseInt.swift in Sources */,
-				B470E37B2762FE6E00BBE6CA /* Fraction.swift in Sources */,
-				B470E3882762FE6E00BBE6CA /* Support.swift in Sources */,
-				B470E3892762FE6E00BBE6CA /* LinearTransformation.swift in Sources */,
-				B470E38E2762FE6E00BBE6CA /* Algebra.swift in Sources */,
-				B470E3812762FE6E00BBE6CA /* CommentCreator.swift in Sources */,
 				B470E3572762FE0900BBE6CA /* ContentView.swift in Sources */,
-				B470E37C2762FE6E00BBE6CA /* Int10.swift in Sources */,
-				B470E3822762FE6E00BBE6CA /* Table.swift in Sources */,
-				B470E38A2762FE6E00BBE6CA /* Expression.swift in Sources */,
-				B470E38D2762FE6E00BBE6CA /* Plane.swift in Sources */,
-				B470E37D2762FE6E00BBE6CA /* Complex.swift in Sources */,
-				B470E3842762FE6E00BBE6CA /* Point.swift in Sources */,
-				B470E3552762FE0900BBE6CA /* icon_generatorApp.swift in Sources */,
-				B470E38C2762FE6E00BBE6CA /* Matrix.swift in Sources */,
-				B470E3862762FE6E00BBE6CA /* MachineLearning.swift in Sources */,
-				B470E37F2762FE6E00BBE6CA /* Arithmetical.swift in Sources */,
-				B470E3832762FE6E00BBE6CA /* Bechmark.swift in Sources */,
+				B4C0A0E3284E13DA0010257B /* CustomImage.swift in Sources */,
+				B4C0A0DF284E13AC0010257B /* GridItemView.swift in Sources */,
+				B4C0A0E1284E13C90010257B /* ProcessView.swift in Sources */,
+				B470E3552762FE0900BBE6CA /* iconGeneratorApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,11 +339,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "icon generator/icon_generator.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.2a;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_ASSET_PATHS = "\"icon generator/Preview Content\"";
-				DEVELOPMENT_TEAM = 3PH93LN984;
+				DEVELOPMENT_TEAM = UJK52W4D7G;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -429,7 +353,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vaida.icon-generator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -443,11 +367,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "icon generator/icon_generator.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.2a;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_ASSET_PATHS = "\"icon generator/Preview Content\"";
-				DEVELOPMENT_TEAM = 3PH93LN984;
+				DEVELOPMENT_TEAM = UJK52W4D7G;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -456,7 +381,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vaida.icon-generator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -467,7 +392,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B470E34C2762FE0900BBE6CA /* Build configuration list for PBXProject "icon generator" */ = {
+		B470E34C2762FE0900BBE6CA /* Build configuration list for PBXProject "Icon Generator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B470E35E2762FE0900BBE6CA /* Debug */,
@@ -476,7 +401,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B470E3602762FE0900BBE6CA /* Build configuration list for PBXNativeTarget "icon generator" */ = {
+		B470E3602762FE0900BBE6CA /* Build configuration list for PBXNativeTarget "Icon Generator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B470E3612762FE0900BBE6CA /* Debug */,
@@ -486,6 +411,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B4C0A0DB284E13500010257B /* Support */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Support;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B470E3492762FE0900BBE6CA /* Project object */;
 }
