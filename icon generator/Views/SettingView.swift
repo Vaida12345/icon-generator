@@ -13,14 +13,18 @@ struct SettingView: View {
     @AppStorage("generates into folder") private var generatesIntoFolder = true
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Toggle("Generates into directory", isOn: $generatesIntoFolder)
             
-            if generatesIntoFolder {
-                Text("Generates the output files into Finder.")
-            } else {
-                Text("Generate the output files, then you can drag the output files.")
+            Group {
+                if generatesIntoFolder {
+                    Text("Generates the output files into Finder.")
+                } else {
+                    Text("Generate the output files, then you can drag the output files.")
+                }
             }
+            .font(.callout)
+            .foregroundColor(.secondary)
         }
         .padding()
     }
