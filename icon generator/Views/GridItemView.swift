@@ -15,7 +15,6 @@ struct GridItemView: View {
     @Binding var finderItems: [FinderItem]
     
     @State var isShowingHint: Bool = false
-    @State var image: NSImage = NSImage(named: "placeholder")!
     @State var isShowingAlert: Bool = false
     
     let item: FinderItem
@@ -24,38 +23,35 @@ struct GridItemView: View {
     var body: some View {
         VStack(alignment: .center) {
             
-            Image(nsImage: image)
-                .resizable()
-                .cornerRadius(5)
-                .aspectRatio(contentMode: .fit)
-                .padding([.top, .leading, .trailing])
-                .popover(isPresented: $isShowingHint) {
-                    Text(image != NSImage(named: "placeholder")! ?
+            if let image = item.image {
+                Image(nsImage: image)
+                    .resizable()
+                    .cornerRadius(5)
+                    .aspectRatio(contentMode: .fit)
+                    .padding([.top, .leading, .trailing])
+                    .popover(isPresented: $isShowingHint) {
+                        Text {
                         """
                         name: \(item.fileName)
                         path: \(item.path)
-                        size: \(image.cgImage(forProposedRect: nil, context: nil, hints: nil)!.width) × \(image.cgImage(forProposedRect: nil, context: nil, hints: nil)!.height)
+                        size: \(image.pixelSize != nil ? image.pixelSize!.width.description + "x" + image.pixelSize!.height.description : "???")
                         """
-                         :
-                        """
-                        Loading...
-                        name: \(item.fileName)
-                        path: \(item.path)
-                        """)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                }
-                .popover(isPresented: $isShowingAlert) {
-                    HStack {
-                        Image(systemName: "exclamationmark.triangle")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                        
-                        Text("This image is not 1: 1")
-                            .frame(width: 150)
+                        }
+                        .multilineTextAlignment(.center)
+                        .padding()
                     }
-                    .padding()
-                }
+                    .popover(isPresented: $isShowingAlert) {
+                        HStack {
+                            Image(systemName: "exclamationmark.triangle")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                            
+                            Text("This image is not 1: 1")
+                                .frame(width: 150)
+                        }
+                        .padding()
+                    }
+            }
             
             Text(item.relativePath ?? item.fileName)
                 .multilineTextAlignment(.center)
@@ -76,14 +72,6 @@ struct GridItemView: View {
             Button("Delete") {
                 withAnimation {
                     _ = finderItems.remove(at: finderItems.firstIndex(of: item)!)
-                }
-            }
-        }
-        .onAppear {
-            DispatchQueue(label: "background").async {
-                image = item.image ?? NSImage(named: "placeholder")!
-                if image.cgImage(forProposedRect: nil, context: nil, hints: nil)!.width != image.cgImage(forProposedRect: nil, context: nil, hints: nil)!.height {
-                    isShowingAlert = true
                 }
             }
         }

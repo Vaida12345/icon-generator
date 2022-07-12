@@ -17,6 +17,10 @@ struct iconGeneratorApp: App {
         WindowGroup {
             ContentView()
         }
+        
+        Settings {
+            SettingView()
+        }
     }
 }
 
@@ -26,12 +30,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
     
+    func applicationWillTerminate(_ notification: Notification) {
+        FinderItem.temporaryDirectory.clear()
+    }
+    
 }
 
 extension FinderItem {
     
     static var output: FinderItem {
-        .downloads.with(subPath: "icon Output")
+        .downloadsDirectory.with(subPath: "icon Output")
     }
     
 }

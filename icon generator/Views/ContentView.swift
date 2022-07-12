@@ -15,6 +15,12 @@ struct ContentView: View {
     @State var isSheetShown: Bool = false
     @State var chosenOption: Options = .normal
     
+    @State private var progress = 0.0
+    @State private var isGenerating = false
+    @State private var isFinished = false
+    
+    @AppStorage("generates into folder") private var generatesIntoFolder = true
+    
     var body: some View {
         VStack {
             
@@ -31,6 +37,9 @@ struct ContentView: View {
                         LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 5)) {
                             ForEach(finderItems) { item in
                                 GridItemView(finderItems: $finderItems, item: item, geometry: geometry)
+                                    .onDrag {
+                                        item.itemProvider!
+                                    }
                             }
                         }
                         
@@ -55,7 +64,7 @@ struct ContentView: View {
                 self.finderItems = []
             }
         } content: {
-            ProcessingView(finderItems: $finderItems, isAppear: $isSheetShown, option: $chosenOption)
+            ProcessingView(finderItems: finderItems, option: chosenOption)
                 .frame(width: 600, height: 150)
         }
         .toolbar {
@@ -64,19 +73,19 @@ struct ContentView: View {
                     Button("Remove All") {
                         withAnimation {
                             finderItems.removeAll()
+                            
+                            progress = 0
+                            isFinished = false
+                            isGenerating = false
                         }
                     }
                 }
             }
             
-            ToolbarItem(placement: .navigation) {
-                Button("Add Item") {
-                    let panel = NSOpenPanel()
-                    panel.allowsMultipleSelection = true
-                    panel.canChooseDirectories = true
-                    if panel.runModal() == .OK {
-                        finderItems.formUnion(panel.urls.map { FinderItem(at: $0) }.filter { $0.image != nil })
-                    }
+            ToolbarItem {
+                if !generatesIntoFolder && isGenerating && progress != 1 {
+                    ProgressView(value: self.progress)
+                        .progressViewStyle(.circular)
                 }
             }
             
@@ -93,9 +102,16 @@ struct ContentView: View {
             
             ToolbarItem {
                 Button("Done") {
-                    isSheetShown = true
+                    DispatchQueue.global().async {
+                        if generatesIntoFolder {
+                            isSheetShown = true
+                        } else {
+                            isGenerating = true
+                            finderItems.process(option: chosenOption, isFinished: $isFinished, progress: $progress.animation(), generatesIntoFolder: false)
+                        }
+                    }
                 }
-                .disabled(finderItems.isEmpty || isSheetShown)
+                .disabled(finderItems.isEmpty || isSheetShown || isGenerating)
             }
         }
     }
