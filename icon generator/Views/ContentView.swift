@@ -23,16 +23,10 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            
-            if finderItems.isEmpty {
-                DropView { items in
-                    withAnimation {
-                        finderItems.formUnion(items.filter { $0.image != nil })
-                    }
-                }
-            } else {
+            DropView(disabled: mode == .noneDestination && isFinished, isShowingPrompt: finderItems.isEmpty, appendingTo: $finderItems) { item in
+                item.image != nil
+            } content: {
                 GeometryReader { geometry in
-                    
                     ScrollView {
                         LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 5)) {
                             ForEach(finderItems) { item in
@@ -45,7 +39,6 @@ struct ContentView: View {
                 }
             }
         }
-        .dropHandler(enabled: !(mode == .noneDestination && isFinished), finderItems: $finderItems)
         .sheet(isPresented: $isSheetShown) {
             withAnimation {
                 self.finderItems = []
@@ -109,27 +102,4 @@ struct ContentView: View {
         case xcodeFull = "Xcode Full"
         case customImage = "Custom Image"
     }
-}
-
-private extension View {
-    
-    @ViewBuilder
-    func dropHandler(enabled: Bool, finderItems: Binding<[FinderItem]>) -> some View {
-        if enabled {
-            onDrop(of: [.fileURL], isTargeted: nil) { providers in
-                
-                Task {
-                    let items = await [FinderItem](from: providers)
-                    withAnimation {
-                        finderItems.wrappedValue.formUnion(items.filter { $0.image != nil })
-                    }
-                }
-                
-                return true
-            }
-        } else {
-            self
-        }
-    }
-    
 }

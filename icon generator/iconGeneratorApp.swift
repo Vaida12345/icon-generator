@@ -20,6 +20,7 @@ struct iconGeneratorApp: App {
         
         Settings {
             SettingView()
+                .frame(width: 400)
         }
     }
 }
