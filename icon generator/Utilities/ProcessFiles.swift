@@ -12,7 +12,10 @@ import SwiftUI
 
 extension Array where Element == FinderItem {
     
-    func process(option: ContentView.Options, isFinished: Binding<Bool>, progress: Binding<Double>, generatesIntoFolder: Bool) {
+    @discardableResult
+    func process(option: ContentView.Options, isFinished: Binding<Bool>, progress: Binding<Double>, generatesIntoFolder: Bool, replaceFile: Bool = true) -> FinderItem {
+        var destinatioN = FinderItem.temporaryDirectory
+        
         for finderItem in self {
             var image: NativeImage {
                 if option == .customImage {
@@ -30,7 +33,8 @@ extension Array where Element == FinderItem {
                 try? image.write(to: destination, option: .icns)
                 destination.extensionName = ".icns"
                 
-                finderItem.path = destination.path
+                if replaceFile { finderItem.path = destination.path }
+                destinatioN = destination
             } else if option == .xcodeMac {
                 let destination = destinationFolder.with(subPath: "AppIcon.appiconset")
                 destination.generateOutputPath()
@@ -42,7 +46,8 @@ extension Array where Element == FinderItem {
                 }
                 FinderItem(at: Bundle.main.url(forResource: "Mac", withExtension: "json")!).copy(to: destination.with(subPath: "Contents.json"))
                 
-                finderItem.path = destination.path
+                if replaceFile { finderItem.path = destination.path }
+                destinatioN = destination
             } else if option == .xcodeFull {
                 let destination = destinationFolder.with(subPath: "AppIcon.appiconset")
                 destination.generateOutputPath()
@@ -54,15 +59,16 @@ extension Array where Element == FinderItem {
                 }
                 FinderItem(at: Bundle.main.url(forResource: "Full", withExtension: "json")!).copy(to: destination.with(subPath: "Contents.json"))
                 
-                finderItem.path = destination.path
+                if replaceFile { finderItem.path = destination.path }
+                destinatioN = destination
             }
-            
-            
             progress.wrappedValue += 1 / Double(self.count)
         }
         
         isFinished.wrappedValue = true
         FinderItem.output.setIcon(image: NSImage(imageLiteralResourceName: "icon"))
+        
+        return destinatioN
     }
     
 }

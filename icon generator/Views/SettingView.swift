@@ -7,19 +7,23 @@
 
 import Foundation
 import SwiftUI
+import Support
 
 struct SettingView: View {
     
-    @AppStorage("generates into folder") private var generatesIntoFolder = true
+    @AppStorage("mode") private var mode: ProcessMode = .export
     
     var body: some View {
         VStack(alignment: .leading) {
-            Toggle("Generates into directory", isOn: $generatesIntoFolder)
+            Picker("Destination", selection: $mode, options: ProcessMode.allCases)
             
             Group {
-                if generatesIntoFolder {
+                switch mode {
+                case .export:
                     Text("Generates the output files into Finder.")
-                } else {
+                case .noneDestination:
+                    Text("Generate the output files, then you can drag the output files.")
+                case .auto:
                     Text("Generate the output files, then you can drag the output files.")
                 }
             }

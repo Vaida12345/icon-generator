@@ -19,6 +19,10 @@ struct GridItemView: View {
     
     let item: FinderItem
     let geometry: GeometryProxy
+    let isFinished: Bool
+    let option: ContentView.Options
+    
+    @AppStorage("mode") private var mode: ProcessMode = .export
     
     var body: some View {
         VStack(alignment: .center) {
@@ -75,5 +79,27 @@ struct GridItemView: View {
                 }
             }
         }
+        .dragHander(isFinished: isFinished, item: item, allItems: $finderItems, mode: mode, option: option)
     }
+}
+
+private extension View {
+    
+    @ViewBuilder
+    func dragHander(isFinished: Bool, item: FinderItem, allItems: Binding<[FinderItem]>, mode: ProcessMode, option: ContentView.Options) -> some View {
+        if isFinished && mode == .export || mode == .auto {
+            onDrag {
+                allItems.wrappedValue.removeAll { $0 == item }
+                if mode == .export {
+                    return item.itemProvider!
+                } else {
+                    let array = [item]
+                    return array.process(option: option, isFinished: .constant(false), progress: .constant(0), generatesIntoFolder: false, replaceFile: false).itemProvider!
+                }
+            }
+        } else {
+            self
+        }
+    }
+    
 }

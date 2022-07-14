@@ -19,7 +19,7 @@ struct ContentView: View {
     @State private var isGenerating = false
     @State private var isFinished = false
     
-    @AppStorage("generates into folder") private var generatesIntoFolder = true
+    @AppStorage("mode") private var mode: ProcessMode = .export
     
     var body: some View {
         VStack {
@@ -36,10 +36,7 @@ struct ContentView: View {
                     ScrollView {
                         LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 5)) {
                             ForEach(finderItems) { item in
-                                GridItemView(finderItems: $finderItems, item: item, geometry: geometry)
-                                    .onDrag {
-                                        item.itemProvider!
-                                    }
+                                GridItemView(finderItems: $finderItems, item: item, geometry: geometry, isFinished: isFinished, option: chosenOption)
                             }
                         }
                         
@@ -48,17 +45,7 @@ struct ContentView: View {
                 }
             }
         }
-        .onDrop(of: [.fileURL], isTargeted: nil) { providers in
-            
-            Task {
-                let items = await [FinderItem](from: providers)
-                withAnimation {
-                    finderItems.formUnion(items.filter { $0.image != nil })
-                }
-            }
-            
-            return true
-        }
+        .dropHandler(enabled: !(mode == .noneDestination && isFinished), finderItems: $finderItems)
         .sheet(isPresented: $isSheetShown) {
             withAnimation {
                 self.finderItems = []
@@ -83,7 +70,7 @@ struct ContentView: View {
             }
             
             ToolbarItem {
-                if !generatesIntoFolder && isGenerating && progress != 1 {
+                if mode == .noneDestination && isGenerating && progress != 1 {
                     ProgressView(value: self.progress)
                         .progressViewStyle(.circular)
                 }
@@ -103,7 +90,7 @@ struct ContentView: View {
             ToolbarItem {
                 Button("Done") {
                     DispatchQueue.global().async {
-                        if generatesIntoFolder {
+                        if mode == .export {
                             isSheetShown = true
                         } else {
                             isGenerating = true
@@ -122,4 +109,27 @@ struct ContentView: View {
         case xcodeFull = "Xcode Full"
         case customImage = "Custom Image"
     }
+}
+
+private extension View {
+    
+    @ViewBuilder
+    func dropHandler(enabled: Bool, finderItems: Binding<[FinderItem]>) -> some View {
+        if enabled {
+            onDrop(of: [.fileURL], isTargeted: nil) { providers in
+                
+                Task {
+                    let items = await [FinderItem](from: providers)
+                    withAnimation {
+                        finderItems.wrappedValue.formUnion(items.filter { $0.image != nil })
+                    }
+                }
+                
+                return true
+            }
+        } else {
+            self
+        }
+    }
+    
 }
