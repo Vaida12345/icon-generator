@@ -9,4 +9,5 @@ Note: If mac says the app was damaged / unknown developer, please go to `System 
 # Interface
 This app was written with [SwiftUI](https://developer.apple.com/xcode/swiftui/).
 
-<img width="947" alt="Screen Shot 2022-02-12 at 1 23 43 PM" src="https://user-images.githubusercontent.com/91354917/153698058-89bf176f-ea77-458f-8a7b-0b768797fd3a.png">
+
+<img width="1206" alt="Screen Shot 2022-07-15 at 7 54 11 PM" src="https://user-images.githubusercontent.com/91354917/179200213-62297395-b58a-4c71-afe8-35ba41531cd6.png">
