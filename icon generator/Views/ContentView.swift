@@ -81,17 +81,19 @@ struct ContentView: View {
             }
             
             ToolbarItem {
-                Button("Done") {
-                    DispatchQueue.global().async {
-                        if mode == .export {
-                            isSheetShown = true
-                        } else {
-                            isGenerating = true
-                            finderItems.process(option: chosenOption, isFinished: $isFinished, progress: $progress.animation(), generatesIntoFolder: false)
+                if mode != .auto {
+                    Button("Done") {
+                        DispatchQueue.global().async {
+                            if mode == .export {
+                                isSheetShown = true
+                            } else {
+                                isGenerating = true
+                                finderItems.process(option: chosenOption, isFinished: $isFinished, progress: $progress.animation(), generatesIntoFolder: false)
+                            }
                         }
                     }
+                    .disabled(finderItems.isEmpty || isSheetShown || isGenerating)
                 }
-                .disabled(finderItems.isEmpty || isSheetShown || isGenerating)
             }
         }
     }
