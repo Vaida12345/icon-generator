@@ -37,6 +37,7 @@ extension Array where Element == FinderItem {
                 destinatioN = destination
             } else if option == .xcodeMac {
                 let destination = destinationFolder.with(subPath: "AppIcon.appiconset")
+                print(image, destination)
                 destination.generateOutputPath()
                 destination.generateDirectory(isFolder: true)
                 

@@ -40,7 +40,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension FinderItem {
     
     static var output: FinderItem {
-        .downloadsDirectory.with(subPath: "icon Output")
+        let output = FinderItem.downloadsDirectory.with(subPath: "icon Output")
+        output.generateDirectory(isFolder: true)
+        return output
     }
     
 }

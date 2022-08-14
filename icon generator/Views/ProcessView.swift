@@ -70,7 +70,8 @@ struct ProcessingView: View {
         }
         .onAppear {
             DispatchQueue(label: "utility").async {
-                finderItems.process(option: self.option, isFinished: $isFinished, progress: $progress, generatesIntoFolder: false)
+                print(option)
+                finderItems.process(option: self.option, isFinished: $isFinished, progress: $progress, generatesIntoFolder: true)
             }
         }
         

@@ -44,26 +44,12 @@ struct GridItemView: View {
                         .multilineTextAlignment(.center)
                         .padding()
                     }
-                    .popover(isPresented: $isShowingAlert) {
-                        HStack {
-                            Image(systemName: "exclamationmark.triangle")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                            
-                            Text("This image is not 1: 1")
-                                .frame(width: 150)
-                        }
-                        .padding()
-                    }
             }
             
             Text(item.relativePath ?? item.fileName)
                 .multilineTextAlignment(.center)
                 .padding([.leading, .bottom, .trailing])
                 .lineLimit(1)
-                .onHover { bool in
-                    self.isShowingHint = bool
-                }
         }
         .frame(width: geometry.size.width / 5, height: geometry.size.width / 5)
         .contextMenu {
@@ -78,6 +64,20 @@ struct GridItemView: View {
                     _ = finderItems.remove(at: finderItems.firstIndex(of: item)!)
                 }
             }
+        }
+        .onHover { bool in
+            self.isShowingHint = bool
+        }
+        .popover(isPresented: $isShowingAlert) {
+            HStack {
+                Image(systemName: "exclamationmark.triangle")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                
+                Text("This image is not 1: 1")
+                    .frame(width: 150)
+            }
+            .padding()
         }
         .dragHander(isFinished: isFinished, item: item, allItems: $finderItems, mode: mode, option: option)
     }
