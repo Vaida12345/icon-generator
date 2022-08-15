@@ -13,8 +13,8 @@ import SwiftUI
 extension Array where Element == FinderItem {
     
     @discardableResult
-    func process(option: ContentView.Options, isFinished: Binding<Bool>, progress: Binding<Double>, generatesIntoFolder: Bool, replaceFile: Bool = true) -> FinderItem {
-        var destinatioN = FinderItem.temporaryDirectory
+    func process(option: ContentView.Options, isFinished: Binding<Bool>, progress: Binding<Double>, generatesIntoFolder: Bool, replaceFile: Bool = true) -> [FinderItem] {
+        var destinatioN: [FinderItem] = []
         
         for finderItem in self {
             var image: NativeImage {
@@ -30,11 +30,11 @@ extension Array where Element == FinderItem {
             if option == .normal || option == .customImage {
                 let destination = destinationFolder.with(subPath: finderItem.relativePath ?? finderItem.name)
                 destination.generateDirectory()
-                try? image.write(to: destination, option: .icns)
+                try! image.write(to: destination, option: .icns)
                 destination.extensionName = ".icns"
                 
                 if replaceFile { finderItem.path = destination.path }
-                destinatioN = destination
+                destinatioN.append(destination)
             } else if option == .xcodeMac {
                 let destination = destinationFolder.with(subPath: "AppIcon.appiconset")
                 print(image, destination)
@@ -48,7 +48,7 @@ extension Array where Element == FinderItem {
                 FinderItem(at: Bundle.main.url(forResource: "Mac", withExtension: "json")!).copy(to: destination.with(subPath: "Contents.json"))
                 
                 if replaceFile { finderItem.path = destination.path }
-                destinatioN = destination
+                destinatioN.append(destination)
             } else if option == .xcodeFull {
                 let destination = destinationFolder.with(subPath: "AppIcon.appiconset")
                 destination.generateOutputPath()
@@ -61,7 +61,7 @@ extension Array where Element == FinderItem {
                 FinderItem(at: Bundle.main.url(forResource: "Full", withExtension: "json")!).copy(to: destination.with(subPath: "Contents.json"))
                 
                 if replaceFile { finderItem.path = destination.path }
-                destinatioN = destination
+                destinatioN.append(destination)
             }
             progress.wrappedValue += 1 / Double(self.count)
         }

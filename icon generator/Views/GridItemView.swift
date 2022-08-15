@@ -22,28 +22,32 @@ struct GridItemView: View {
     let isFinished: Bool
     let option: ContentView.Options
     
+    var image: NativeImage? {
+        return item.image ?? item.with(subPath: "icon_1024x1024.heic").image
+    }
+    
     @AppStorage("mode") private var mode: ProcessMode = .export
     
     var body: some View {
         VStack(alignment: .center) {
             
-            if let image = item.image {
+            if let image = image {
                 Image(nsImage: image)
                     .resizable()
                     .cornerRadius(5)
                     .aspectRatio(contentMode: .fit)
                     .padding([.top, .leading, .trailing])
-                    .popover(isPresented: $isShowingHint) {
-                        Text {
-                        """
-                        name: \(item.fileName)
-                        path: \(item.path)
-                        size: \(image.pixelSize != nil ? image.pixelSize!.width.description + "x" + image.pixelSize!.height.description : "???")
-                        """
-                        }
-                        .multilineTextAlignment(.center)
-                        .padding()
-                    }
+//                    .popover(isPresented: $isShowingHint) {
+//                        Text {
+//                        """
+//                        name: \(item.fileName)
+//                        path: \(item.path)
+//                        size: \(image.pixelSize != nil ? image.pixelSize!.width.description + "x" + image.pixelSize!.height.description : "???")
+//                        """
+//                        }
+//                        .multilineTextAlignment(.center)
+//                        .padding()
+//                    }
             }
             
             Text(item.relativePath ?? item.fileName)
@@ -90,12 +94,7 @@ private extension View {
         if isFinished && mode == .export || mode == .auto {
             onDrag {
                 allItems.wrappedValue.removeAll { $0 == item }
-                if mode == .export {
-                    return item.itemProvider!
-                } else {
-                    let array = [item]
-                    return array.process(option: option, isFinished: .constant(false), progress: .constant(0), generatesIntoFolder: false, replaceFile: false).itemProvider!
-                }
+                return item.itemProvider!
             }
         } else {
             self

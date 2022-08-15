@@ -23,8 +23,14 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            DropView(disabled: mode == .noneDestination && isFinished, isShowingPrompt: finderItems.isEmpty, appendingTo: $finderItems) { item in
-                item.image != nil
+            DropView(disabled: mode == .noneDestination && isFinished, isShowingPrompt: finderItems.isEmpty) {
+                $0.image != nil
+            } handler: { items in
+                if mode == .auto {
+                    finderItems.append(contentsOf: items.process(option: chosenOption, isFinished: $isFinished, progress: $progress, generatesIntoFolder: false))
+                } else {
+                    finderItems.append(contentsOf: items)
+                }
             } content: {
                 GeometryReader { geometry in
                     ScrollView {
