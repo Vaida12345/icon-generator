@@ -42,7 +42,7 @@ extension Array where Element == FinderItem {
                 destination.generateDirectory(isFolder: true)
                 
                 let sizes = [16, 32, 64, 128, 256, 512, 1024]
-                for size in sizes {
+                sizes.iterated(isConcurrent: true) { _, size  in
                     try? image.resized(to: NSSize(width: size, height: size))!.write(to: destination.with(subPath: "icon_\(size)x\(size).heic"), option: .heic)
                 }
                 FinderItem(at: Bundle.main.url(forResource: "Mac", withExtension: "json")!).copy(to: destination.with(subPath: "Contents.json"))
