@@ -21,13 +21,19 @@ struct ContentView: View {
     
     @AppStorage("mode") private var mode: ProcessMode = .export
     
+    @State private var alertManager = AlertManager()
+    
     var body: some View {
         VStack {
             DropView(disabled: mode == .noneDestination && isFinished, isShowingPrompt: finderItems.isEmpty) {
                 $0.image != nil
             } handler: { items in
                 if mode == .auto {
-                    finderItems.append(contentsOf: items.process(option: chosenOption, isFinished: $isFinished, progress: $progress, generatesIntoFolder: false))
+                    do {
+                        finderItems.append(contentsOf: try items.process(option: chosenOption, isFinished: $isFinished, progress: $progress, generatesIntoFolder: false))
+                    } catch {
+                        alertManager = AlertManager(error: error)
+                    }
                 } else {
                     finderItems.append(contentsOf: items)
                 }
@@ -44,6 +50,7 @@ struct ContentView: View {
                     .frame(width: geometry.size.width, height: geometry.size.height)
                 }
             }
+            .alert(manager: $alertManager)
         }
         .sheet(isPresented: $isSheetShown) {
             withAnimation {
@@ -94,7 +101,11 @@ struct ContentView: View {
                                 isSheetShown = true
                             } else {
                                 isGenerating = true
-                                finderItems.process(option: chosenOption, isFinished: $isFinished, progress: $progress.animation(), generatesIntoFolder: false)
+                                do {
+                                    try finderItems.process(option: chosenOption, isFinished: $isFinished, progress: $progress.animation(), generatesIntoFolder: false)
+                                } catch {
+                                    alertManager = AlertManager(error: error)
+                                }
                             }
                         }
                     }

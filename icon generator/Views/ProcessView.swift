@@ -20,6 +20,8 @@ struct ProcessingView: View {
     
     @Environment(\.dismiss) private var dismiss
     
+    @State private var alertManager = AlertManager()
+    
     var body: some View {
         
         VStack {
@@ -70,10 +72,14 @@ struct ProcessingView: View {
         }
         .onAppear {
             DispatchQueue(label: "utility").async {
-                print(option)
-                finderItems.process(option: self.option, isFinished: $isFinished, progress: $progress, generatesIntoFolder: true)
+                do {
+                    try finderItems.process(option: self.option, isFinished: $isFinished, progress: $progress, generatesIntoFolder: true)
+                } catch {
+                    alertManager = AlertManager(error: error)
+                }
             }
         }
+        .alert(manager: $alertManager)
         
     }
     

@@ -32,7 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationWillTerminate(_ notification: Notification) {
-        FinderItem.temporaryDirectory.clear()
+        try? FinderItem.temporaryDirectory.clear()
     }
     
 }
@@ -41,7 +41,7 @@ extension FinderItem {
     
     static var output: FinderItem {
         let output = FinderItem.downloadsDirectory.with(subPath: "icon Output")
-        output.generateDirectory(isFolder: true)
+        try? output.generateDirectory(isFolder: true)
         return output
     }
     
