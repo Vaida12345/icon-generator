@@ -29,10 +29,12 @@ struct ContentView: View {
                 $0.image != nil
             } handler: { items in
                 if mode == .auto {
-                    do {
-                        finderItems.append(contentsOf: try items.process(option: chosenOption, isFinished: $isFinished, progress: $progress, generatesIntoFolder: false))
-                    } catch {
-                        alertManager = AlertManager(error: error)
+                    Task {
+                        do {
+                            await finderItems.append(contentsOf: try items.process(option: chosenOption, isFinished: $isFinished, progress: $progress, generatesIntoFolder: false))
+                        } catch {
+                            alertManager = AlertManager(error: error)
+                        }
                     }
                 } else {
                     finderItems.append(contentsOf: items)
@@ -96,13 +98,13 @@ struct ContentView: View {
             ToolbarItem {
                 if mode != .auto {
                     Button("Done") {
-                        DispatchQueue.global().async {
+                        Task {
                             if mode == .export {
                                 isSheetShown = true
                             } else {
                                 isGenerating = true
                                 do {
-                                    try finderItems.process(option: chosenOption, isFinished: $isFinished, progress: $progress.animation(), generatesIntoFolder: false)
+                                    try await finderItems.process(option: chosenOption, isFinished: $isFinished, progress: $progress.animation(), generatesIntoFolder: false)
                                 } catch {
                                     alertManager = AlertManager(error: error)
                                 }

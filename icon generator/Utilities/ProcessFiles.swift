@@ -12,14 +12,14 @@ import SwiftUI
 
 extension Array where Element == FinderItem {
     
-    @discardableResult
-    func process(option: ContentView.Options, isFinished: Binding<Bool>, progress: Binding<Double>, generatesIntoFolder: Bool, replaceFile: Bool = true) throws -> [FinderItem] {
+    @MainActor @discardableResult
+    func process(option: ContentView.Options, isFinished: Binding<Bool>, progress: Binding<Double>, generatesIntoFolder: Bool, replaceFile: Bool = true) async throws -> [FinderItem] {
         var finalDestinations: [FinderItem] = []
         
         for item in self {
             let destination: FinderItem
             guard let image = item.image else { continue }
-            let resultImage = option == .customImage ? CustomImage(image: image).saveImage(size: CGSize(width: 1350, height: 1350)) : image
+            let resultImage = await option == .customImage ? CustomImage(image: image).saveImage(size: CGSize(width: 1350, height: 1350)) : image
             
             let destinationFolder = generatesIntoFolder ? FinderItem.output : FinderItem.temporaryDirectory.with(subPath: UUID().description)
             
@@ -27,7 +27,7 @@ extension Array where Element == FinderItem {
                 destination = destinationFolder.with(subPath: item.relativePath ?? item.name)
                 try destination.generateDirectory()
                 try resultImage.write(to: destination, option: .icns)
-                destination.extensionName = ".icns"
+                destination.extension = "icns"
                 
                 finalDestinations.append(destination)
             } else if option == .xcodeMac {
@@ -36,7 +36,7 @@ extension Array where Element == FinderItem {
                 try destination.generateDirectory(isFolder: true)
                 
                 let sizes = [16, 32, 64, 128, 256, 512, 1024]
-                sizes.concurrentForEach { size  in
+                sizes.concurrent.forEach { size  in
                     try? resultImage.cgImage!.resized(to: NSSize(width: size, height: size))!.write(to: destination.with(subPath: "icon_\(size)x\(size).heic"), option: .heic)
                 }
                 try FinderItem.bundleItem(forResource: "Mac", withExtension: "json")!.copy(to: destination.with(subPath: "Contents.json"))

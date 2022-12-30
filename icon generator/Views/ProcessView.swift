@@ -70,13 +70,11 @@ struct ProcessingView: View {
                 .padding()
             }
         }
-        .onAppear {
-            DispatchQueue(label: "utility").async {
-                do {
-                    try finderItems.process(option: self.option, isFinished: $isFinished, progress: $progress, generatesIntoFolder: true)
-                } catch {
-                    alertManager = AlertManager(error: error)
-                }
+        .task {
+            do {
+                try await finderItems.process(option: self.option, isFinished: $isFinished, progress: $progress, generatesIntoFolder: true)
+            } catch {
+                alertManager = AlertManager(error: error)
             }
         }
         .alert(manager: $alertManager)

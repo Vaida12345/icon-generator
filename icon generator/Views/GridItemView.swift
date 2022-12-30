@@ -50,7 +50,7 @@ struct GridItemView: View {
 //                    }
             }
             
-            Text(item.relativePath ?? item.fileName)
+            Text(item.relativePath ?? item.stem)
                 .multilineTextAlignment(.center)
                 .padding([.leading, .bottom, .trailing])
                 .lineLimit(1)
