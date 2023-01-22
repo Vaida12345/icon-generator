@@ -11,6 +11,7 @@
 		B458F32C27635C9E001EBF25 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B458F32B27635C9E001EBF25 /* README.md */; };
 		B458F32E27635CB6001EBF25 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B458F32D27635CB6001EBF25 /* LICENSE */; };
 		B45F92D927631DE3004F048F /* Mac.json in Resources */ = {isa = PBXBuildFile; fileRef = B45F92D827631DE3004F048F /* Mac.json */; };
+		B4637E2C296988ED0033730B /* ActionIcon.json in Resources */ = {isa = PBXBuildFile; fileRef = B4637E2B296988ED0033730B /* ActionIcon.json */; };
 		B470E3552762FE0900BBE6CA /* iconGeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3542762FE0900BBE6CA /* iconGeneratorApp.swift */; };
 		B470E3572762FE0900BBE6CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B470E3562762FE0900BBE6CA /* ContentView.swift */; };
 		B470E3592762FE0900BBE6CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B470E3582762FE0900BBE6CA /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		B458F32B27635C9E001EBF25 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B458F32D27635CB6001EBF25 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B45F92D827631DE3004F048F /* Mac.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Mac.json; sourceTree = "<group>"; };
+		B4637E2B296988ED0033730B /* ActionIcon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ActionIcon.json; sourceTree = "<group>"; };
 		B470E3512762FE0900BBE6CA /* Icon Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Icon Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B470E3542762FE0900BBE6CA /* iconGeneratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iconGeneratorApp.swift; sourceTree = "<group>"; };
 		B470E3562762FE0900BBE6CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				B483A9D427633FBA007381F6 /* icon.icns */,
+				B4637E2B296988ED0033730B /* ActionIcon.json */,
 				B45F92D827631DE3004F048F /* Mac.json */,
 				B4F610A4284E20250037A053 /* Full.json */,
 				B470E3582762FE0900BBE6CA /* Assets.xcassets */,
@@ -201,6 +204,7 @@
 				B4F610A5284E20250037A053 /* Full.json in Resources */,
 				B45F92D927631DE3004F048F /* Mac.json in Resources */,
 				B458F32E27635CB6001EBF25 /* LICENSE in Resources */,
+				B4637E2C296988ED0033730B /* ActionIcon.json in Resources */,
 				B470E3592762FE0900BBE6CA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

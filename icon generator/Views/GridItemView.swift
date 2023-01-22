@@ -23,7 +23,7 @@ struct GridItemView: View {
     let option: ContentView.Options
     
     var image: NativeImage? {
-        return item.image ?? item.with(subPath: "icon_1024x1024.heic").image
+        return item.image ?? item.with(subPath: "icon_1024x1024.png").image
     }
     
     @AppStorage("mode") private var mode: ProcessMode = .export

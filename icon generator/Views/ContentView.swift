@@ -25,34 +25,35 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            DropView(disabled: mode == .noneDestination && isFinished, isShowingPrompt: finderItems.isEmpty) {
-                $0.image != nil
-            } handler: { items in
-                if mode == .auto {
-                    Task {
-                        do {
-                            await finderItems.append(contentsOf: try items.process(option: chosenOption, isFinished: $isFinished, progress: $progress, generatesIntoFolder: false))
-                        } catch {
-                            alertManager = AlertManager(error: error)
-                        }
-                    }
-                } else {
-                    finderItems.append(contentsOf: items)
-                }
-            } content: {
-                GeometryReader { geometry in
-                    ScrollView {
-                        LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 5)) {
-                            ForEach(finderItems) { item in
-                                GridItemView(finderItems: $finderItems, item: item, geometry: geometry, isFinished: isFinished, option: chosenOption)
+            DropHandlerView()
+                .onDrop { sources in
+                    if mode == .auto {
+                        Task {
+                            do {
+                                await finderItems.append(contentsOf: try sources.process(option: chosenOption, isFinished: $isFinished, progress: $progress, generatesIntoFolder: false))
+                            } catch {
+                                alertManager = AlertManager(error: error)
                             }
                         }
-                        
+                    } else {
+                        finderItems.append(contentsOf: sources)
                     }
-                    .frame(width: geometry.size.width, height: geometry.size.height)
                 }
-            }
-            .alert(manager: $alertManager)
+                .disabled(mode == .noneDestination && isFinished)
+                .overlay(hidden: finderItems.isEmpty) {
+                    GeometryReader { geometry in
+                        ScrollView {
+                            LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 5)) {
+                                ForEach(finderItems) { item in
+                                    GridItemView(finderItems: $finderItems, item: item, geometry: geometry, isFinished: isFinished, option: chosenOption)
+                                }
+                            }
+                            
+                        }
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                    }
+                }
+                .alert(manager: $alertManager)
         }
         .sheet(isPresented: $isSheetShown) {
             withAnimation {

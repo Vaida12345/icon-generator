@@ -23,37 +23,37 @@ extension Array where Element == FinderItem {
             
             let destinationFolder = generatesIntoFolder ? FinderItem.output : FinderItem.temporaryDirectory.with(subPath: UUID().description)
             
-            if option == .normal || option == .customImage {
+            switch option {
+            case .normal, .customImage:
                 destination = destinationFolder.with(subPath: item.relativePath ?? item.name)
                 try destination.generateDirectory()
                 try resultImage.write(to: destination, option: .icns)
                 destination.extension = "icns"
                 
                 finalDestinations.append(destination)
-            } else if option == .xcodeMac {
+                
+            case .xcodeMac:
                 destination = destinationFolder.with(subPath: "AppIcon.appiconset")
                 try destination.generateOutputPath()
                 try destination.generateDirectory(isFolder: true)
                 
                 let sizes = [16, 32, 64, 128, 256, 512, 1024]
                 sizes.concurrent.forEach { size  in
-                    try? resultImage.cgImage!.resized(to: NSSize(width: size, height: size))!.write(to: destination.with(subPath: "icon_\(size)x\(size).heic"), option: .heic)
+                    try? resultImage.cgImage!.resized(to: NSSize(width: size, height: size))!.write(to: destination.with(subPath: "icon_\(size)x\(size).png"), option: .png)
                 }
                 try FinderItem.bundleItem(forResource: "Mac", withExtension: "json")!.copy(to: destination.with(subPath: "Contents.json"))
                 
-            } else if option == .xcodeFull {
+            case .xcodeFull:
                 destination = destinationFolder.with(subPath: "AppIcon.appiconset")
                 try destination.generateOutputPath()
                 try destination.generateDirectory(isFolder: true)
                 
                 let sizes = [16, 20, 29, 32, 40, 58, 60, 64, 76, 80, 87, 120, 128, 152, 167, 180, 256, 512, 1024]
                 for size in sizes {
-                    try? resultImage.cgImage!.resized(to: NSSize(width: size, height: size))!.write(to: destination.with(subPath: "icon_\(size)x\(size).heic"), option: .heic)
+                    try? resultImage.cgImage!.resized(to: NSSize(width: size, height: size))!.write(to: destination.with(subPath: "icon_\(size)x\(size).png"), option: .png)
                 }
                 try FinderItem.bundleItem(forResource: "Full", withExtension: "json")!.copy(to: destination.with(subPath: "Contents.json"))
                 
-            } else {
-                fatalError()
             }
             
             finalDestinations.append(destination)
