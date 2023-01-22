@@ -16,6 +16,7 @@ struct iconGeneratorApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .background(BlurredEffectView().ignoresSafeArea())
         }
         
         Settings {
