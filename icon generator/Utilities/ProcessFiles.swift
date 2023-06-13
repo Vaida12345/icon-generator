@@ -12,8 +12,8 @@ import SwiftUI
 
 extension Array where Element == FinderItem {
     
-    @MainActor @discardableResult
-    func process(option: ContentView.Options, isFinished: Binding<Bool>, progress: Binding<Double>, generatesIntoFolder: Bool, replaceFile: Bool = true) async throws -> [FinderItem] {
+    @discardableResult
+    func process(option: ContentView.Options, generatesIntoFolder: Bool, replaceFile: Bool = true) async throws -> [FinderItem] {
         var finalDestinations: [FinderItem] = []
         
         for item in self {
@@ -26,16 +26,14 @@ extension Array where Element == FinderItem {
             switch option {
             case .normal, .customImage:
                 destination = destinationFolder.with(subPath: item.relativePath ?? item.name)
-                try destination.generateDirectory()
+                try destination.makeDirectory()
                 try resultImage.write(to: destination, option: .icns)
                 destination.extension = "icns"
-                
-                finalDestinations.append(destination)
                 
             case .xcodeMac:
                 destination = destinationFolder.with(subPath: "AppIcon.appiconset")
                 try destination.generateOutputPath()
-                try destination.generateDirectory(isFolder: true)
+                try destination.makeDirectory(isFolder: true)
                 
                 let sizes = [16, 32, 64, 128, 256, 512, 1024]
                 sizes.concurrent.forEach { size  in
@@ -46,7 +44,7 @@ extension Array where Element == FinderItem {
             case .xcodeFull:
                 destination = destinationFolder.with(subPath: "AppIcon.appiconset")
                 try destination.generateOutputPath()
-                try destination.generateDirectory(isFolder: true)
+                try destination.makeDirectory(isFolder: true)
                 
                 let sizes = [16, 20, 29, 32, 40, 58, 60, 64, 76, 80, 87, 120, 128, 152, 167, 180, 256, 512, 1024]
                 for size in sizes {
@@ -57,10 +55,8 @@ extension Array where Element == FinderItem {
             }
             
             finalDestinations.append(destination)
-            progress.wrappedValue += 1 / Double(self.count)
         }
         
-        isFinished.wrappedValue = true
         FinderItem.output.setIcon(image: NSImage(imageLiteralResourceName: "icon"))
         
         return finalDestinations

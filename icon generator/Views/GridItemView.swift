@@ -18,7 +18,6 @@ struct GridItemView: View {
     @State var isShowingAlert: Bool = false
     
     let item: FinderItem
-    let geometry: GeometryProxy
     let isFinished: Bool
     let option: ContentView.Options
     
@@ -55,7 +54,7 @@ struct GridItemView: View {
                 .padding([.leading, .bottom, .trailing])
                 .lineLimit(1)
         }
-        .frame(width: geometry.size.width / 5, height: geometry.size.width / 5)
+//        .frame(width: geometry.size.width / 5, height: geometry.size.width / 5)
         .contextMenu {
             Button("Open") {
                 item.open()

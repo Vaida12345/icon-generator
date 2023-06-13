@@ -72,10 +72,11 @@ struct ProcessingView: View {
         }
         .task {
             do {
-                try await finderItems.process(option: self.option, isFinished: $isFinished, progress: $progress, generatesIntoFolder: true)
+                try await finderItems.process(option: self.option, generatesIntoFolder: true)
             } catch {
                 alertManager = AlertManager(error: error)
             }
+            self.isFinished = true
         }
         .alert(manager: $alertManager)
         

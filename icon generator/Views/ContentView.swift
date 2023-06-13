@@ -13,12 +13,11 @@ import Support
 struct ContentView: View {
     @State var finderItems: [FinderItem] = []
     @State var isSheetShown: Bool = false
-    @State var chosenOption: Options = .normal
     
-    @State private var progress = 0.0
     @State private var isGenerating = false
     @State private var isFinished = false
     
+    @AppStorage("chosenOption") var chosenOption: Options = .normal
     @AppStorage("mode") private var mode: ProcessMode = .export
     
     @State private var alertManager = AlertManager()
@@ -28,11 +27,21 @@ struct ContentView: View {
             DropHandlerView()
                 .onDrop { sources in
                     if mode == .auto {
-                        Task {
+                        Task.detached {
                             do {
-                                await finderItems.append(contentsOf: try sources.process(option: chosenOption, isFinished: $isFinished, progress: $progress, generatesIntoFolder: false))
+                                let items = try await sources.process(option: chosenOption, generatesIntoFolder: false)
+                                
+                                Task { @MainActor in
+                                    self.finderItems.append(contentsOf: items)
+                                }
                             } catch {
-                                alertManager = AlertManager(error: error)
+                                Task { @MainActor in
+                                    alertManager = AlertManager(error: error)
+                                }
+                            }
+                            
+                            Task { @MainActor in
+                                self.isFinished = true
                             }
                         }
                     } else {
@@ -40,21 +49,20 @@ struct ContentView: View {
                     }
                 }
                 .disabled(mode == .noneDestination && isFinished)
-                .overlay(hidden: finderItems.isEmpty) {
+                .overlay(hidden: finderItems.isEmpty) { _ in
                     GeometryReader { geometry in
                         ScrollView {
-                            LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 5)) {
+                            LazyVGrid(columns: Array(repeating: .init(.fixed(200)), count: min(Int(geometry.size.width) / 200, finderItems.count))) {
                                 ForEach(finderItems) { item in
-                                    GridItemView(finderItems: $finderItems, item: item, geometry: geometry, isFinished: isFinished, option: chosenOption)
+                                    GridItemView(finderItems: $finderItems, item: item, isFinished: isFinished, option: chosenOption)
                                 }
                             }
-                            
                         }
-                        .frame(width: geometry.size.width, height: geometry.size.height)
                     }
                 }
                 .alert(manager: $alertManager)
         }
+        .frame(minWidth: 200)
         .sheet(isPresented: $isSheetShown) {
             withAnimation {
                 self.finderItems = []
@@ -70,18 +78,10 @@ struct ContentView: View {
                         withAnimation {
                             finderItems.removeAll()
                             
-                            progress = 0
                             isFinished = false
                             isGenerating = false
                         }
                     }
-                }
-            }
-            
-            ToolbarItem {
-                if mode == .noneDestination && isGenerating && progress != 1 {
-                    ProgressView(value: self.progress)
-                        .progressViewStyle(.circular)
                 }
             }
             
@@ -105,10 +105,12 @@ struct ContentView: View {
                             } else {
                                 isGenerating = true
                                 do {
-                                    try await finderItems.process(option: chosenOption, isFinished: $isFinished, progress: $progress.animation(), generatesIntoFolder: false)
+                                    try await finderItems.process(option: chosenOption, generatesIntoFolder: false)
                                 } catch {
                                     alertManager = AlertManager(error: error)
                                 }
+                                
+                                self.isFinished = true
                             }
                         }
                     }
