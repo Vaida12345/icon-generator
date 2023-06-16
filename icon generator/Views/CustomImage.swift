@@ -7,10 +7,11 @@
 
 import Foundation
 import SwiftUI
+import Support
 
 struct CustomImage: View {
     
-    let image: NSImage
+    let image: NativeImage
     
     var body: some View {
         ZStack {
@@ -31,10 +32,12 @@ struct CustomImage: View {
     
     init(image: NSImage) {
         let cgImage = image.cgImage!
+        print(cgImage.size)
         guard let cgImage = cgImage.fill(in: .square(width: cgImage.size.shorterSide), type: .attentionBased) else {
             self.image = image
             return
         }
-        self.image = NSImage(cgImage: cgImage)
+        print(cgImage.size)
+        self.image = NativeImage(cgImage: cgImage)
     }
 }
