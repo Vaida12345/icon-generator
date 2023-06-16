@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CustomImage: View {
     
-    @State var image: NSImage
+    let image: NSImage
     
     var body: some View {
         ZStack {
@@ -27,5 +27,14 @@ struct CustomImage: View {
                 .cornerRadius(100)
         }
         .frame(width: 1350, height: 1350)
+    }
+    
+    init(image: NSImage) {
+        let cgImage = image.cgImage!
+        guard let cgImage = cgImage.fill(in: .square(width: cgImage.size.shorterSide), type: .attentionBased) else {
+            self.image = image
+            return
+        }
+        self.image = NSImage(cgImage: cgImage)
     }
 }

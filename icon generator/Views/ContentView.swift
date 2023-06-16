@@ -52,7 +52,7 @@ struct ContentView: View {
                 .overlay(hidden: finderItems.isEmpty) { _ in
                     GeometryReader { geometry in
                         ScrollView {
-                            LazyVGrid(columns: Array(repeating: .init(.fixed(200)), count: min(Int(geometry.size.width) / 200, finderItems.count))) {
+                            LazyVGrid(columns: Array(repeating: .init(.fixed(200), alignment: .leading), count: min(Int(geometry.size.width) / 200, finderItems.count)), alignment: .leading) {
                                 ForEach(finderItems) { item in
                                     GridItemView(finderItems: $finderItems, item: item, isFinished: isFinished, option: chosenOption)
                                 }
