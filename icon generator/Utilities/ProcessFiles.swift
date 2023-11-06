@@ -19,7 +19,7 @@ extension Array where Element == FinderItem {
         for item in self {
             let destination: FinderItem
             guard let image = item.image else { continue }
-            let resultImage = await option == .customImage ? CustomImage(image: image).saveImage(size: CGSize(width: 1350, height: 1350)) : image
+            let resultImage = await option == .customImage ? NativeImage(cgImage: ImageRenderer(content: CustomImage(image: image)).cgImage!)! : image
             
             let destinationFolder = generatesIntoFolder ? FinderItem.output : FinderItem.temporaryDirectory.with(subPath: UUID().description)
             
@@ -33,7 +33,7 @@ extension Array where Element == FinderItem {
             case .xcodeMac:
                 destination = destinationFolder.with(subPath: "AppIcon.appiconset")
                 try destination.generateOutputPath()
-                try destination.makeDirectory(isFolder: true)
+                try destination.makeDirectory()
                 
                 let sizes = [16, 32, 64, 128, 256, 512, 1024]
                 sizes.concurrent.forEach { size  in
@@ -44,7 +44,7 @@ extension Array where Element == FinderItem {
             case .xcodeFull:
                 destination = destinationFolder.with(subPath: "AppIcon.appiconset")
                 try destination.generateOutputPath()
-                try destination.makeDirectory(isFolder: true)
+                try destination.makeDirectory()
                 
                 let sizes = [16, 20, 29, 32, 40, 58, 60, 64, 76, 80, 87, 120, 128, 152, 167, 180, 256, 512, 1024]
                 for size in sizes {

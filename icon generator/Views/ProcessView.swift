@@ -42,7 +42,9 @@ struct ProcessingView: View {
                     Spacer()
                     
                     Button {
-                        FinderItem.output.revealInFinder()
+                        Task {
+                            try FinderItem.output.reveal()
+                        }
                         dismiss()
                     } label: {
                         Text("Show in Finder")

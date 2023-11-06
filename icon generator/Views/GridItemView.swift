@@ -57,10 +57,14 @@ struct GridItemView: View {
 //        .frame(width: geometry.size.width / 5, height: geometry.size.width / 5)
         .contextMenu {
             Button("Open") {
-                item.open()
+                Task {
+                    try item.open()
+                }
             }
             Button("Show in Finder") {
-                item.revealInFinder()
+                Task {
+                    try item.reveal()
+                }
             }
             Button("Delete") {
                 withAnimation {
