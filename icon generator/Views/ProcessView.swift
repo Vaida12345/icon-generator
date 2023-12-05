@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-import Support
+import Nucleus
 
 
 struct ProcessingView: View {
@@ -19,8 +19,6 @@ struct ProcessingView: View {
     @State var progress: Double = 0
     
     @Environment(\.dismiss) private var dismiss
-    
-    @State private var alertManager = AlertManager()
     
     var body: some View {
         
@@ -76,11 +74,10 @@ struct ProcessingView: View {
             do {
                 try await finderItems.process(option: self.option, generatesIntoFolder: true)
             } catch {
-                alertManager = AlertManager(error: error)
+                AlertManager(error).present()
             }
             self.isFinished = true
         }
-        .alert(manager: $alertManager)
         
     }
     

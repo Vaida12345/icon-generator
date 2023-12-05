@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-import Support
+import Nucleus
 
 struct SettingView: View {
     

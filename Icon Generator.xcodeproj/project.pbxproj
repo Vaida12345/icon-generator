@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B412A6252B18459C0093B64A /* Nucleus in Frameworks */ = {isa = PBXBuildFile; productRef = B412A6242B18459C0093B64A /* Nucleus */; };
 		B43BBE3028802E9A00E330E9 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BBE2F28802E9A00E330E9 /* Mode.swift */; };
 		B458F32C27635C9E001EBF25 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B458F32B27635C9E001EBF25 /* README.md */; };
 		B458F32E27635CB6001EBF25 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B458F32D27635CB6001EBF25 /* LICENSE */; };
@@ -18,7 +19,6 @@
 		B483A9D527633FBA007381F6 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = B483A9D427633FBA007381F6 /* icon.icns */; };
 		B49F1E5F287D8A79000D49FF /* ProcessFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F1E5E287D8A79000D49FF /* ProcessFiles.swift */; };
 		B49F1E61287D8B5B000D49FF /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F1E60287D8B5B000D49FF /* SettingView.swift */; };
-		B4C0A0DC284E13500010257B /* Support in Frameworks */ = {isa = PBXBuildFile; productRef = B4C0A0DB284E13500010257B /* Support */; };
 		B4C0A0DF284E13AC0010257B /* GridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0A0DE284E13AC0010257B /* GridItemView.swift */; };
 		B4C0A0E1284E13C90010257B /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0A0E0284E13C90010257B /* ProcessView.swift */; };
 		B4C0A0E3284E13DA0010257B /* CustomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0A0E2284E13DA0010257B /* CustomImage.swift */; };
@@ -39,7 +39,6 @@
 		B483A9D427633FBA007381F6 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		B49F1E5E287D8A79000D49FF /* ProcessFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessFiles.swift; sourceTree = "<group>"; };
 		B49F1E60287D8B5B000D49FF /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
-		B4C0A0DA284E134D0010257B /* DataBase */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DataBase; path = ../../Packages/DataBase; sourceTree = "<group>"; };
 		B4C0A0DE284E13AC0010257B /* GridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridItemView.swift; sourceTree = "<group>"; };
 		B4C0A0E0284E13C90010257B /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
 		B4C0A0E2284E13DA0010257B /* CustomImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImage.swift; sourceTree = "<group>"; };
@@ -51,7 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4C0A0DC284E13500010257B /* Support in Frameworks */,
+				B412A6252B18459C0093B64A /* Nucleus in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,7 +107,6 @@
 		B4C0A0D9284E134D0010257B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B4C0A0DA284E134D0010257B /* DataBase */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -155,7 +153,7 @@
 			);
 			name = "Icon Generator";
 			packageProductDependencies = (
-				B4C0A0DB284E13500010257B /* Support */,
+				B412A6242B18459C0093B64A /* Nucleus */,
 			);
 			productName = "icon generator";
 			productReference = B470E3512762FE0900BBE6CA /* Icon Generator.app */;
@@ -185,6 +183,9 @@
 				Base,
 			);
 			mainGroup = B470E3482762FE0900BBE6CA;
+			packageReferences = (
+				B42F57E62B18454F00213934 /* XCLocalSwiftPackageReference "../../Packages/DataBase" */,
+			);
 			productRefGroup = B470E3522762FE0900BBE6CA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -366,12 +367,13 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 12;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = UJK52W4D7G;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© Vaida";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -379,7 +381,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vaida.icon-generator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -404,13 +406,14 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 12;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = UJK52W4D7G;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© Vaida";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -418,7 +421,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vaida.icon-generator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -452,10 +455,18 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		B42F57E62B18454F00213934 /* XCLocalSwiftPackageReference "../../Packages/DataBase" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../Packages/DataBase;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		B4C0A0DB284E13500010257B /* Support */ = {
+		B412A6242B18459C0093B64A /* Nucleus */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Support;
+			package = B42F57E62B18454F00213934 /* XCLocalSwiftPackageReference "../../Packages/DataBase" */;
+			productName = Nucleus;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

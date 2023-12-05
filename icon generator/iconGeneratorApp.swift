@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Support
+import Nucleus
 
 @main
 struct iconGeneratorApp: App {

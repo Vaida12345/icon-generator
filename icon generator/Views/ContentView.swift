@@ -7,7 +7,7 @@
 
 import SwiftUI
 import AVFoundation
-import Support
+import Nucleus
 
 
 struct ContentView: View {
@@ -19,8 +19,6 @@ struct ContentView: View {
     
     @AppStorage("chosenOption") var chosenOption: Options = .normal
     @AppStorage("mode") private var mode: ProcessMode = .export
-    
-    @State private var alertManager = AlertManager()
     
     var body: some View {
         VStack {
@@ -36,7 +34,7 @@ struct ContentView: View {
                                 }
                             } catch {
                                 Task { @MainActor in
-                                    alertManager = AlertManager(error: error)
+                                    AlertManager(error).present()
                                 }
                             }
                             
@@ -60,7 +58,6 @@ struct ContentView: View {
                         }
                     }
                 }
-                .alert(manager: $alertManager)
         }
         .frame(minWidth: 200)
         .sheet(isPresented: $isSheetShown) {
@@ -107,7 +104,7 @@ struct ContentView: View {
                                 do {
                                     try await finderItems.process(option: chosenOption, generatesIntoFolder: false)
                                 } catch {
-                                    alertManager = AlertManager(error: error)
+                                    AlertManager(error).present()
                                 }
                                 
                                 self.isFinished = true

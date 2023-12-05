@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Support
+import Nucleus
 import SwiftUI
 
 
@@ -26,7 +26,7 @@ extension Array where Element == FinderItem {
             switch option {
             case .normal, .customImage:
                 destination = destinationFolder.with(subPath: item.relativePath ?? item.name)
-                try destination.makeDirectory()
+                try destination.generateDirectory()
                 try resultImage.write(to: destination, option: .icns)
                 destination.extension = "icns"
                 
@@ -36,6 +36,7 @@ extension Array where Element == FinderItem {
                 try destination.makeDirectory()
                 
                 let sizes = [16, 32, 64, 128, 256, 512, 1024]
+                print(destination)
                 sizes.concurrent.forEach { size  in
                     try? resultImage.cgImage!.resized(to: NSSize(width: size, height: size))!.write(to: destination.with(subPath: "icon_\(size)x\(size).png"), option: .png)
                 }
