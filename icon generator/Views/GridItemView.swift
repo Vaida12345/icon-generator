@@ -22,7 +22,7 @@ struct GridItemView: View {
     let option: ContentView.Options
     
     var image: NativeImage? {
-        return item.image ?? item.with(subPath: "icon_1024x1024.png").image
+        item.image() ?? item.appending(path: "icon_1024x1024.png").image()
     }
     
     @AppStorage("mode") private var mode: ProcessMode = .export
@@ -49,7 +49,7 @@ struct GridItemView: View {
 //                    }
             }
             
-            Text(item.relativePath ?? item.stem)
+            Text(item.stem)
                 .multilineTextAlignment(.center)
                 .padding([.leading, .bottom, .trailing])
                 .lineLimit(1)
@@ -66,6 +66,9 @@ struct GridItemView: View {
                     try item.reveal()
                 }
             }
+            
+            Divider()
+            
             Button("Delete") {
                 withAnimation {
                     _ = finderItems.remove(at: finderItems.firstIndex(of: item)!)
@@ -97,7 +100,7 @@ private extension View {
         if isFinished && mode == .export || mode == .auto {
             onDrag {
                 allItems.wrappedValue.removeAll { $0 == item }
-                return item.itemProvider!
+                return item.itemProvider()!
             }
         } else {
             self

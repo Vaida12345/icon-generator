@@ -69,28 +69,13 @@ struct ContentView: View {
                 .frame(width: 600, height: 150)
         }
         .toolbar {
-            ToolbarItem(placement: .navigation) {
-                if !finderItems.isEmpty {
-                    Button("Remove All") {
-                        withAnimation {
-                            finderItems.removeAll()
-                            
-                            isFinished = false
-                            isGenerating = false
-                        }
-                    }
-                }
-            }
-            
             ToolbarItem {
-                Menu(chosenOption.rawValue) {
-                    ForEach(Options.allCases, id: \.self) { item in
-                        Button(item.rawValue) {
-                            chosenOption = item
-                        }
+                Picker("", selection: $chosenOption) {
+                    ForEach(Options.allCases, id: \.self) {
+                        Image(systemName: $0.imageName)
                     }
                 }
-                .frame(width: 120)
+                .pickerStyle(.segmented)
             }
             
             ToolbarItem {
@@ -122,5 +107,18 @@ struct ContentView: View {
         case xcodeMac = "Xcode Mac"
         case xcodeFull = "Xcode Full"
         case customImage = "Custom Image"
+        
+        var imageName: String {
+            switch self {
+            case .normal:
+                "circle.rectangle.filled.pattern.diagonalline"
+            case .xcodeMac:
+                "macstudio"
+            case .xcodeFull:
+                "macbook.and.ipad"
+            case .customImage:
+                "rectangle.inset.filled"
+            }
+        }
     }
 }

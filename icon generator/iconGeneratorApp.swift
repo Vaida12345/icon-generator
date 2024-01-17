@@ -17,6 +17,7 @@ struct iconGeneratorApp: App {
         WindowGroup {
             ContentView()
                 .background(BlurredEffectView().ignoresSafeArea())
+                .navigationTitle("")
         }
         
         Settings {
@@ -41,7 +42,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension FinderItem {
     
     static var output: FinderItem {
-        FinderItem.downloadsDirectory.with(subPath: "icon Output")
+        FinderItem.downloadsDirectory.appending(path: "icon Output")
     }
     
 }
