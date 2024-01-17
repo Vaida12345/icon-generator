@@ -13,11 +13,21 @@ struct iconGeneratorApp: App {
     
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
+    @State var finderItems: [FinderItem] = []
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(finderItems: $finderItems)
                 .background(BlurredEffectView().ignoresSafeArea())
                 .navigationTitle("")
+                .frame(minWidth: 500)
+        }
+        .commands {
+            CommandGroup(after: .newItem) {
+                Button("Remove All") {
+                    finderItems.removeAll()
+                }
+            }
         }
         
         Settings {

@@ -11,7 +11,7 @@ import Nucleus
 
 
 struct ContentView: View {
-    @State var finderItems: [FinderItem] = []
+    @Binding var finderItems: [FinderItem]
     @State var isSheetShown: Bool = false
     
     @State private var isGenerating = false
@@ -73,6 +73,7 @@ struct ContentView: View {
                 Picker("", selection: $chosenOption) {
                     ForEach(Options.allCases, id: \.self) {
                         Image(systemName: $0.imageName)
+                            .help($0.rawValue)
                     }
                 }
                 .pickerStyle(.segmented)
